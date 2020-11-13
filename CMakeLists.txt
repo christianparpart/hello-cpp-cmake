@@ -10,4 +10,11 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # usualy provided by outside CLI command, required by LSP plugins
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(hello hello.cpp)
+set(lib_SRC helper.cpp helper.h)
+
+add_executable(hello main.cpp ${lib_SRC})
+
+add_executable(helper_test helper_test.cpp ${lib_SRC})
+
+include(CTest)
+add_test(NAME helper COMMAND ./helper_test)
